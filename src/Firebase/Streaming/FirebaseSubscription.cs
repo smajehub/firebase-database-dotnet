@@ -41,7 +41,7 @@ namespace Firebase.Database.Streaming
             {
                 // Firebase SSE connections are intentionally long-lived.
                 // Do not let HttpClient's default 100-second timeout
-                // terminate the streaming request.
+                // terminate the streaming request.sdfasd
                 Timeout = Timeout.InfiniteTimeSpan
             };
 
