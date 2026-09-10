@@ -37,7 +37,13 @@ namespace Firebase.Database.Streaming
                 CookieContainer = new CookieContainer()
             };
 
-            var httpClient = new HttpClient(handler, true);
+            var httpClient = new HttpClient(handler, true)
+            {
+                // Firebase SSE connections are intentionally long-lived.
+                // Do not let HttpClient's default 100-second timeout
+                // terminate the streaming request.
+                Timeout = Timeout.InfiniteTimeSpan
+            };
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/event-stream"));
 
